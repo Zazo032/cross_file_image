@@ -29,7 +29,7 @@ class XFileImage extends ImageProvider<XFileImage> {
   }
 
   @override
-  ImageStreamCompleter load(XFileImage key, DecoderCallback decode) {
+  ImageStreamCompleter load(XFileImage key, ImageDecoderCallback decode) {
     return MultiFrameImageStreamCompleter(
       codec: _loadAsync(key, decode),
       scale: key.scale,
@@ -40,7 +40,7 @@ class XFileImage extends ImageProvider<XFileImage> {
     );
   }
 
-  Future<ui.Codec> _loadAsync(XFileImage key, DecoderCallback decode) async {
+  Future<ui.Codec> _loadAsync(XFileImage key, ImageDecoderCallback decode) async {
     final Uint8List bytes = await file.readAsBytes();
 
     if (bytes.lengthInBytes == 0) {
